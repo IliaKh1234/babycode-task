@@ -1,9 +1,11 @@
 import { use, useEffect, useState } from "react"
-import axios from "../services/api"
 import { useNavigate } from "react-router-dom"
 import { onAuthStateChanged } from "firebase/auth"
-import { auth } from "../services/firebase";  // ← import your initialized auth
+import { auth } from "../services/firebase"; 
 import { signOut } from "firebase/auth";
+import { collection, getDocs } from "firebase/firestore";
+import { db } from "../services/firebase"; // Make sure db is exported
+
 
 const StudentList = () => {
   const [students, setStudents] = useState([])
@@ -35,23 +37,27 @@ const StudentList = () => {
     }
   };
   
-  useEffect(() => {
+useEffect(() => {
     const fetchStudents = async () => {
-      try {
-        setLoading(true)
-        const res = await axios.get("/students")
-        setStudents(res.data)
-        setError(null)
-      } catch (err) {
-        setError("Failed to fetch students. Please try again later.")
-        console.error(err)
-      } finally {
-        setLoading(false)
-      }
-    }
-
-    fetchStudents()
-  }, [])
+        try {
+          setLoading(true);
+          const querySnapshot = await getDocs(collection(db, "students"));
+          const studentsData = querySnapshot.docs.map(doc => ({
+            id: doc.id,
+            ...doc.data(),
+          }));
+          setStudents(studentsData);
+          setError(null);
+        } catch (err) {
+          setError("Failed to fetch students. Please try again later.");
+          console.error(err);
+        } finally {
+          setLoading(false);
+        }
+      };
+      
+  fetchStudents();
+}, []);
 
   const filtered = filter
     ? students.filter((s) =>

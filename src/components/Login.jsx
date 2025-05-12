@@ -3,6 +3,7 @@ import { useState } from 'react';
 import logo from '../images/logo.png';
 import background from '../images/clip-message-sent 1.png';
 import { useNavigate } from 'react-router-dom';
+import AddStudentForm from './AddStudentForm';
 
 const Login = ({ onLogin }) => {
   const [email, setEmail] = useState('');
@@ -16,8 +17,12 @@ const Login = ({ onLogin }) => {
       const res = await axios.post('/login', { email, password });
       onLogin(res.data);
       navigate('/');
+      console.log(res.data)
+      return <AddStudentForm isLoggedIn={true}/>
     } catch (err) {
       setError('Login failed. Check your credentials.');
+      setEmail('')
+      setPassword('')
     }
   };
 

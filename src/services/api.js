@@ -16,10 +16,8 @@ const admin = {
   password: "admin123",
 };
 
-// Students endpoint
 mock.onGet("/students").reply(200, students);
 
-// Login endpoint
 mock.onPost("/login").reply(config => {
   const { email, password } = JSON.parse(config.data);
 
