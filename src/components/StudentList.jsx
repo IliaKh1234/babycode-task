@@ -4,7 +4,7 @@ import { onAuthStateChanged } from "firebase/auth"
 import { auth } from "../services/firebase"; 
 import { signOut } from "firebase/auth";
 import { collection, getDocs } from "firebase/firestore";
-import { db } from "../services/firebase"; // Make sure db is exported
+import { db } from "../services/firebase"; 
 
 
 const StudentList = () => {
@@ -20,11 +20,18 @@ const StudentList = () => {
   
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (firebaseUser) => {
-      setUser(firebaseUser);
-      setAuthChecked(true)
+      if (firebaseUser) {
+        setUser(firebaseUser);
+        setAuthChecked(true);
+      } else {
+        setUser(null);
+        setAuthChecked(false); 
+      }
     });
+  
     return () => unsubscribe();
   }, []);
+  
   
   const handleLogout = async () => {
     try {
@@ -195,7 +202,7 @@ useEffect(() => {
         <div>
           {authChecked ? (
               <>
-            <button onClick={() => navigate("/add")} style={styles.logIn}>
+            <button  onClick={() => navigate("/add")} style={styles.logIn}>
               Add Student
             </button>
                <button onClick={handleLogout} style={styles.logIn}>Log Out</button>

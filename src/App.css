@@ -8,36 +8,18 @@
   background: #F4F7FC;
 }
 
-@media screen and (max-width: 1462px){
-  .background_{
-    display: none;
-  }
-  .logInForm{
-    text-align: center;
-    transform: translate(0 0);
-    padding-right: 50px;
-  }
-  .logInParent{
-    justify-content: center !important;
-    float: left !important;
-    margin-left: -100px;
-    
-  }
-}
-@media screen and (max-width: 599px){
-
-  .logInParent{
-    justify-content: center !important;
-    float: left !important;
-    margin-left: -150px;
-    
-  }
-  .logInTitle{
-    font-size: 25px !important;
-  }
+.logInForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 400px;
+  width: 100%;
+  text-align: center;
+  margin: auto;
+  margin-top: 200px;
 }
 .addStudentParent{
-  width: 900px;
+  width: 50%;
   height: 400px;
   background: #E1E6EF;
   margin: auto;
