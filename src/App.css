@@ -6,3 +6,32 @@
 .header{
   background: #F4F7FC;
 }
+
+@media screen and (max-width: 1462px){
+  .background_{
+    display: none;
+  }
+  .logInForm{
+    text-align: center;
+    transform: translate(0 0);
+    padding-right: 50px;
+  }
+  .logInParent{
+    justify-content: center !important;
+    float: left !important;
+    margin-left: -100px;
+    
+  }
+}
+@media screen and (max-width: 599px){
+
+  .logInParent{
+    justify-content: center !important;
+    float: left !important;
+    margin-left: -150px;
+    
+  }
+  .logInTitle{
+    font-size: 25px !important;
+  }
+}

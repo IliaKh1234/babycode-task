@@ -29,9 +29,9 @@ const Login = ({ onLogin }) => {
     <>
       <img onClick={handleLogo} style={{ width: '100px', position: 'absolute', top: '20px', left: '50px' }} src={logo} alt="" />
 
-      <div style={{ display: 'flex', height: '100vh', justifyContent: 'space-between' }}>
-        <form style={{ transform: 'translate(50%, 30%)' }} onSubmit={handleSubmit}>
-          <h1 style={{ fontSize: '50px', color: '#3751FE' }}>Log in as Admin</h1>
+      <div className='logInParent' style={{ display: 'flex', height: '100vh', justifyContent: 'space-between' }}>
+        <form className='logInForm' style={{ transform: 'translate(50%, 30%)' }} onSubmit={handleSubmit}>
+          <h1 className='logInTitle' style={{ fontSize: '50px', color: '#3751FE' }}>Log in as Admin</h1>
           <p style={{ marginTop: '10px', color: 'gray' }}>Welcome back, Please Log in to your account</p>
           <div style={{ display: 'flex', flexDirection: 'column', width: '300px', marginTop: '20px' }}>
             <input type="email" placeholder="Email" value={email} onChange={e => setEmail(e.target.value)} style={{ border: '1px solid #C1BBBB', outline: 'none', padding: '5px 50px 5px 10px' }} />
@@ -40,7 +40,7 @@ const Login = ({ onLogin }) => {
             {error && <p style={{ color: 'red' }}>{error}</p>}
           </div>
         </form>
-        <div style={{ background: 'gray' }}>
+        <div className='background_' style={{ background: 'gray' }}>
           <img style={{ transform: 'translateY(50%)', width: '100%' }} src={background} alt="" />
         </div>
       </div>
